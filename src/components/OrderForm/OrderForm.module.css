@@ -1,0 +1,18 @@
+.order_form {
+  display: grid;
+  padding: 2rem 1rem;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 4fr;
+  grid-row-gap: 1rem;
+}
+
+.order_form label {
+  font-weight: bold;
+  padding: 0.5rem 0;
+}
+
+.order_form input {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  background-color: #f7f7f7;
+}
