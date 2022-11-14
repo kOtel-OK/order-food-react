@@ -85,6 +85,12 @@ class App extends Component {
     this.setState({ amount: amount });
   }
 
+  cleanCartHandler() {
+    this.setState({ cart: [] });
+    this.setState({ amount: 0 });
+    // this.setState({ isCartOpen: false });
+  }
+
   // componentDidMount() {
   //   const meals = [];
   //   // if (this.MEALS.length > 0) return;
@@ -115,6 +121,7 @@ class App extends Component {
         value={{
           cart: this.state.cart,
           updateAmount: this.cartAmountHandler.bind(this),
+          cleanCart: this.cleanCartHandler.bind(this),
         }}
       >
         {this.state.isCartOpen && (

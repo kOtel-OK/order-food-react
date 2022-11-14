@@ -16,3 +16,8 @@
   border-radius: 0.5rem;
   background-color: #f7f7f7;
 }
+
+.order_form input.invalid {
+  border: 1px solid #f00;
+  background-color: #fbb6b6;
+}
