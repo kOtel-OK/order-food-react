@@ -15,6 +15,7 @@ const Cart = function (props) {
 
   const httpHandler = data => {
     console.log(data);
+    // context.cleanCart();
   };
 
   const httpObj = useHttp(httpHandler);
@@ -50,7 +51,7 @@ const Cart = function (props) {
   const sendOrderHandler = () => {
     if (sendOrder) {
       httpObj.fetchData(
-        'https://eact-http-post-29079-default-rtdb.europe-west1.firebasedatabase.app/orders.json',
+        'https://react-http-post-29079-default-rtdb.europe-west1.firebasedatabase.app/orders.json',
         {
           method: 'POST',
           body: JSON.stringify(orderData),
@@ -80,7 +81,7 @@ const Cart = function (props) {
         };
       });
 
-      orderData.id = Math.random();
+      orderData.id = Date.now();
       orderData.date = new Date().toLocaleString('en-us');
       orderData.firs_name = formData[0];
       orderData.last_name = formData[1];
@@ -92,18 +93,23 @@ const Cart = function (props) {
     }
   };
 
-  // return (
-
   return (
     <Fragment>
       {httpObj.error && (
         <p className={classes.error}>Something went wrong...</p>
       )}
 
+      {httpObj.isSuccess && (
+        <p className={classes.success}>
+          Congrats! Your order has successfully sent
+        </p>
+      )}
+
       <ul className={classes['cart-items']}>
         {context.cart.map(el => {
           return (
             <CartItem
+              isOrderSuccess={httpObj.isSuccess}
               key={el.id}
               id={el.id}
               amount={el.amount}
@@ -120,7 +126,7 @@ const Cart = function (props) {
         <span>${getTotalPrice().toFixed(2)}</span>
       </div>
 
-      {sendOrder && context.cart.length > 0 && (
+      {sendOrder && context.cart.length > 0 && !httpObj.isSuccess && (
         <div>
           <OrderForm onOrderConfirm={orderConfirmHandler} />
         </div>
@@ -142,7 +148,7 @@ const Cart = function (props) {
         >
           Close
         </button>
-        {context.cart.length > 0 && (
+        {context.cart.length > 0 && !httpObj.isSuccess && (
           <button
             disabled={sendOrder && sendOrderBtn ? true : false}
             className={classes['button--alt']}

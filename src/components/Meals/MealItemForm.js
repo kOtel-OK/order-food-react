@@ -27,7 +27,7 @@ const MealItemForm = function () {
   if (httpObj.response.length === 0 && !httpObj.error) {
     return <p>Loading...</p>;
   } else if (httpObj.error) {
-    return <p>Something went wrong...</p>;
+    return <p className={classes.error}>Something went wrong :((</p>;
   } else {
     return httpObj.response.map(el => (
       <div key={el.id} className={classes.form}>

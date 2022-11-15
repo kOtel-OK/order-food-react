@@ -18,14 +18,17 @@ const CartItem = function (props) {
           <span className={classes.amount}>x{props.amount}</span>
         </div>
       </div>
-      <div className={classes.actions}>
-        <button type="button" onClick={onBtnRemove}>
-          -
-        </button>
-        <button type="button" onClick={onBtnAdd}>
-          +
-        </button>
-      </div>
+
+      {!props.isOrderSuccess && (
+        <div className={classes.actions}>
+          <button type="button" onClick={onBtnRemove}>
+            -
+          </button>
+          <button type="button" onClick={onBtnAdd}>
+            +
+          </button>
+        </div>
+      )}
     </li>
   );
 };

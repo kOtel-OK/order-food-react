@@ -21,3 +21,9 @@
   background-color: #641e03;
   border-color: #641e03;
 }
+
+.error {
+  font-size: 1.5rem;
+  text-align: center;
+  color: #f00;
+}
