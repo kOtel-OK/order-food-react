@@ -48,6 +48,9 @@
   color: white;
 }
 
-button:disabled {
-  background-color: #ccc;
+.actions button:disabled {
+  background-color: #eee;
+  border-color: rgb(135, 135, 135);
+  color: rgb(135, 135, 135);
+  cursor: not-allowed;
 }

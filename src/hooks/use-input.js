@@ -3,14 +3,9 @@ import { useState } from 'react';
 const useInput = function (validationHandler) {
   const [inputValue, setInputValue] = useState('');
   const [inputValueError, setInputValueError] = useState(false);
-  //   const [isInputValid, setIsInputValid] = useState(false);
 
   const onInputChangeHandler = event => {
-    // console.log(event.target.value.length);
-    // console.log(inputValueError);
-    // console.log(isInputValid);
     setInputValueError(validationHandler(event.target.value));
-    // setIsInputValid(inputValueError === false && event.target.value.length > 0);
     setInputValue(event.target.value);
   };
 
@@ -25,7 +20,6 @@ const useInput = function (validationHandler) {
   return {
     inputValue,
     inputValueError,
-    // isInputValid,
     setInputValue,
     isInputValidHandler,
     onInputChangeHandler,

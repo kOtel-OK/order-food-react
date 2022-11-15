@@ -1,10 +1,9 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import useInput from '../../hooks/use-input';
 
 import classes from './OrderForm.module.css';
 
 const OrderForm = function (props) {
-  //   console.log(props);
   const nameValidationHandler = value => {
     return value.match(/[^a-zа-я]/gi) !== null ? true : false;
   };
@@ -22,13 +21,19 @@ const OrderForm = function (props) {
     surnameInputObj.isInputValidHandler() &&
     phoneInputObj.isInputValidHandler();
 
-  if (isFormValid) {
-    props.onOrderConfirm([
-      nameInputObj.inputValue,
-      surnameInputObj.inputValue,
-      phoneInputObj.inputValue,
-    ]);
-  }
+  useEffect(() => {
+    if (isFormValid) {
+      props.onOrderConfirm([
+        nameInputObj.inputValue,
+        surnameInputObj.inputValue,
+        phoneInputObj.inputValue,
+      ]);
+    }
+
+    if (!isFormValid) {
+      props.onOrderConfirm([]);
+    }
+  }, [isFormValid]);
 
   return (
     <Fragment>
