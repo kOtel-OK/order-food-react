@@ -11,7 +11,11 @@ const useInput = function (validationHandler) {
 
   const onInputFocusHandler = () => {};
 
-  const onInputBlurHandler = () => {};
+  const onInputBlurHandler = () => {
+    if (inputValue.length === 0) {
+      setInputValueError(true);
+    }
+  };
 
   const isInputValidHandler = () => {
     return inputValueError === false && inputValue.length > 0;

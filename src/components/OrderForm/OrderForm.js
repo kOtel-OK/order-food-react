@@ -33,7 +33,13 @@ const OrderForm = function (props) {
     if (!isFormValid) {
       props.onOrderConfirm([]);
     }
-  }, [isFormValid]);
+  }, [
+    isFormValid,
+    nameInputObj.inputValue,
+    phoneInputObj.inputValue,
+    props,
+    surnameInputObj.inputValue,
+  ]);
 
   return (
     <Fragment>
@@ -42,6 +48,7 @@ const OrderForm = function (props) {
         <input
           className={nameInputObj.inputValueError ? classes.invalid : ''}
           onChange={nameInputObj.onInputChangeHandler}
+          onBlur={nameInputObj.onInputBlurHandler}
           type="text"
           name="first_name"
           placeholder=" a-z letters only"
@@ -51,6 +58,7 @@ const OrderForm = function (props) {
         <input
           className={surnameInputObj.inputValueError ? classes.invalid : ''}
           onChange={surnameInputObj.onInputChangeHandler}
+          onBlur={surnameInputObj.onInputBlurHandler}
           type="text"
           placeholder=" a-z letters only"
           name="last_name"
@@ -60,6 +68,7 @@ const OrderForm = function (props) {
         <input
           className={phoneInputObj.inputValueError ? classes.invalid : ''}
           onChange={phoneInputObj.onInputChangeHandler}
+          onBlur={phoneInputObj.onInputBlurHandler}
           type="tel"
           name="phone"
           placeholder=" 0-9 digits only"

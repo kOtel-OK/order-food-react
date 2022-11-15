@@ -50,13 +50,15 @@ const Cart = function (props) {
   const sendOrderHandler = () => {
     if (sendOrder) {
       httpObj.fetchData(
-        'https://react-http-post-29079-default-rtdb.europe-west1.firebasedatabase.app/orders.json',
+        'https://eact-http-post-29079-default-rtdb.europe-west1.firebasedatabase.app/orders.json',
         {
           method: 'POST',
           body: JSON.stringify(orderData),
           headers: { 'Content-Type': 'application/json' },
         }
       );
+
+      if (httpObj) return;
 
       console.log('Sending to server');
       setSendOrder(false);
@@ -90,8 +92,14 @@ const Cart = function (props) {
     }
   };
 
+  // return (
+
   return (
     <Fragment>
+      {httpObj.error && (
+        <p className={classes.error}>Something went wrong...</p>
+      )}
+
       <ul className={classes['cart-items']}>
         {context.cart.map(el => {
           return (
